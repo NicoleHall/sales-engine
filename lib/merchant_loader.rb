@@ -5,7 +5,7 @@ class MerchantLoader
 
   attr_reader :merchants
 
-  def initialize(dir)
+  def initialize(dir = "data")
     @merchants = []
     @dir       = dir
   end

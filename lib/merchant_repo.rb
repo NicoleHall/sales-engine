@@ -42,36 +42,28 @@ class MerchantRepository
     find_by(:updated_at, updated_at)
   end
 
-  def find_all_merchants_by_id(id) ## why does this exist?
+  def find_all_by(attribute, search_criteria)
     array = []
     merchants.each do |merchant|
-      array << merchant if merchant.id == id
+      array << merchant if merchant.send(attribute) == search_criteria
     end
     array
+  end
+
+  def find_all_merchants_by_id(id) ## why does this exist?
+    find_all_by(:id, id)
   end
 
   def find_all_merchants_by_name(name)
-    array = []
-    merchants.each do |merchant|
-      array << merchant if merchant.name == name
-    end
-    array
+    find_all_by(:name, name)
   end
 
   def find_all_merchants_by_created_at(created_at)
-    array = []
-    merchants.each do |merchant|
-      array << merchant if merchant.created_at == created_at
-    end
-    array
+    find_all_by(:created_at, created_at)
   end
 
   def find_all_merchants_by_updated_at(updated_at)
-    array = []
-    merchants.each do |merchant|
-      array << merchant if merchant.updated_at == updated_at
-    end
-    array
+    find_all_by(:updated_at, updated_at)
   end
 
 end

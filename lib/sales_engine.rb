@@ -6,5 +6,4 @@ class SalesEngine
     @merchant_repo = MerchantRepository.new(dir)
     @merchant_repo.create_merchants
   end
-
 end

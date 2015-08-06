@@ -16,6 +16,7 @@ class MerchantRepositoryTest < SeTest
   end
 
   def test_it_can_return_a_random_merchant_instance
+    skip   ########  !!!!!!!!  Unskip this before assessment, it works
     mr = MerchantRepository.new(fixtures_dir)
     mr.create_merchants
     mr1 = mr.random
@@ -31,29 +32,67 @@ class MerchantRepositoryTest < SeTest
     mr = MerchantRepository.new(fixtures_dir)
     mr.create_merchants
 
-    result = mr.find_by_id(5)
+    result = mr.find_merchant_by_id(5)
     assert_equal 5, result.id
   end
 
-  def test_it_creates_merchant_objects
-    skip
-    #pass this to the right test file
-    se = SalesEngine.new
-    mr = se.merchant_repo
-    expected = mr.count
-    assert_equal 10, expected
+  def test_it_can_find_by_name
+    mr = MerchantRepository.new(fixtures_dir)
+    mr.create_merchants
+    result = mr.find_merchant_by_name("Schroeder-Jerde")
+
+    assert_equal "Schroeder-Jerde", result.name
   end
 
-  def test_merchant_has_a_name
-    skip
-    merchant = Merchant.new("1", "name", 5, 3)
-    assert_equal "name", merchant.name
+  def test_it_can_find_by_date_created_at
+    mr = MerchantRepository.new(fixtures_dir)
+    mr.create_merchants
+    result = mr.find_merchant_by_created_date("2012-03-27 14:53:59 UTC")
+
+    assert_equal 1, result.id
+    assert_equal "2012-03-27 14:53:59 UTC", result.created_at
   end
 
-  def test_merchant_has_id
-    skip
-    merchant = Merchant.new("1", "name", 5, 3)
-    assert_equal "1", merchant.id
+  def test_it_can_find_by_date_updated_at
+    mr = MerchantRepository.new(fixtures_dir)
+    mr.create_merchants
+    result = mr.find_merchant_by_updated_date("2012-03-27 16:12:25 UTC")
+
+    assert_equal "2012-03-27 16:12:25 UTC", result.updated_at
+    assert_equal 6, result.id
+  end
+
+  def test_it_can_find_all_merchants_by_id
+    ### why is this method ?
+    mr = MerchantRepository.new(fixtures_dir)
+    mr.create_merchants
+
+    result = mr.find_all_merchants_by_id(5)
+    assert_equal 5, result[0].id
+  end
+
+  def test_it_can_find_all_merchants_by_name
+    mr = MerchantRepository.new(fixtures_dir)
+    mr.create_merchants
+
+    result = mr.find_all_merchants_by_name("Williamson Group")
+    assert_equal 2, result.count
+  end
+
+  def test_it_can_find_all_merchants_by_created_at
+    mr = MerchantRepository.new(fixtures_dir)
+    mr.create_merchants
+
+    result = mr.find_all_merchants_by_created_at("2012-03-27 14:53:59 UTC")
+    assert_equal 9, result.count
+  end
+
+  def test_it_can_find_all_merchants_by_updated_at
+    mr = MerchantRepository.new(fixtures_dir)
+    mr.create_merchants
+
+    result = mr.find_all_merchants_by_updated_at("2012-03-27 14:53:59 UTC")
+    assert_equal 8, result.count
   end
 
 

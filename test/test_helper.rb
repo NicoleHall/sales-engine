@@ -9,6 +9,6 @@ class SeTest < Minitest::Test
   end
 
   def fixtures_dir
-    File.expand_path "#{__dir__}/../data"
+    File.expand_path "#{__dir__}/../fixtures"
   end
 end

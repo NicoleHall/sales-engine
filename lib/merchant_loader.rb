@@ -11,7 +11,7 @@ class MerchantLoader
   end
 
   def data
-    FileIO.load_file("#{@dir}/merchants.csv")
+    FileIO.load_file("#{@dir}/fixture_merchant.csv")
   end
 
   def load_merchants

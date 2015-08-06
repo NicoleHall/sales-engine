@@ -19,8 +19,6 @@ end
 
 
 
-
-
 # se = SalesEngine.new
 # se.load_data("fixtures.csv")
 # puts se.merchant_repo.merchants.inspect

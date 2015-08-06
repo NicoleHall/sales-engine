@@ -3,7 +3,7 @@ require_relative '../lib/sales_engine'
 
 class SalesEngineTest < SeTest
 
-  meta crnt: true
+  # meta crnt: true
   def test_sales_engine_loads_the_merchant_repository_with_the_data
     se = SalesEngine.new(data_dir)
     mr = se.merchant_repo

@@ -11,11 +11,13 @@ class MerchantRepositoryTest < Minitest::Test
 
   def test_it_can_find_all
     mr = MerchantRepository.new
+    mr.create_merchants
     assert_equal 10, mr.all.size
   end
 
   def test_it_can_return_a_random_merchant_instance
     mr = MerchantRepository.new
+    mr.create_merchants
     mr1 = mr.random
     mr2 = mr.random
     mr3 = mr.random

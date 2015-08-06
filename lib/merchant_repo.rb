@@ -11,13 +11,26 @@ class MerchantRepository
   def create_merchants
     @merchants = MerchantLoader.new(@dir).load_merchants
   end
-end
 
-data_dir = File.expand_path "#{__dir__}/../data"
-mr = MerchantRepository.new(data_dir)
-mr.create_merchants[0]
-# => #<Merchant:0x007fe3da0ebc10
-#     @created_at="2012-03-27 14:53:59 UTC",
-#     @id="1",
-#     @name="Schroeder-Jerde",
-#     @updated_at="2012-03-27 14:53:59 UTC">
+  def all
+    merchants
+  end
+
+  def random
+    merchants.sample
+  end
+
+  def find_by_id(id)
+    merchants.detect do |item|
+      item.id == id
+    end
+  end
+
+  def find_all_by_id(id)
+    array = []
+    merchants.each do |merchant|
+      array << merchant if merchant.id == id
+    end
+    array
+  end
+end

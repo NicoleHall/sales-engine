@@ -1,16 +1,17 @@
-require_relative 'merchants'
+require_relative 'merchant'
 require_relative 'fileio'
 
 class MerchantLoader
 
   attr_reader :merchants
 
-  def initialize
+  def initialize(dir)
     @merchants = []
+    @dir       = dir
   end
 
   def data
-    FileIO.load_file("merchants.csv")
+    FileIO.load_file("#{@dir}/merchants.csv")
   end
 
   def load_merchants

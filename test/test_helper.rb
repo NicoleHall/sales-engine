@@ -1,7 +1,7 @@
 # require 'minitest/autorun'
 # require 'minitest/pride'
 # require '../lib/sales_engine'
-# require 'pry'
+require 'pry'
 
 class SeTest < Minitest::Test
   def data_dir
@@ -9,6 +9,6 @@ class SeTest < Minitest::Test
   end
 
   def fixtures_dir
-    File.expand_path "#{__dir__}/../little_data"
+    File.expand_path "#{__dir__}/../data"
   end
 end

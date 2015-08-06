@@ -8,19 +8,3 @@ class Merchant
     @updated_at = updated_at
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-# se = SalesEngine.new
-# se.load_data("fixtures.csv")
-# puts se.merchant_repo.merchants.inspect

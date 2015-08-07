@@ -43,6 +43,10 @@ class ItemRepository
     find_by(:updated_at, updated_at)
   end
 
+  def find_by_description(description)
+    find_by(:description, description)
+  end
+
   def find_all_by(attribute, search_criteria)
     array = []
     items.each do |item|

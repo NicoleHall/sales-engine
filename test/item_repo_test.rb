@@ -46,6 +46,32 @@ class ItemRepositoryTest < SeTest
     ### is this not an array of results?  can I not call count on it?
   end
 
+  def test_it_can_find_matching_item_by_description
+    ir = ItemRepository.new(fixtures_dir)
+    ir.create_items
+
+    result = ir.find_by_description
+    assert_equal ??, result.description
+  end
+
+  def test_it_can_find_matching_item_by_unit_price
+    skip
+    ir = ItemRepository.new(fixtures_dir)
+    ir.create_items
+
+    result = ir.find_by_unit_price
+    assert_equal ??
+  end
+
+  def test_it_can_find_matching_item_by_merchant_id
+    skip
+    ir = ItemRepository.new(fixtures_dir)
+    ir.create_items
+
+    result = ir.find_by_merchant_id(5)
+    assert_equal ??
+  end
+
   def test_it_can_find_by_date_created_at
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items

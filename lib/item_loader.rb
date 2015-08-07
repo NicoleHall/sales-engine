@@ -20,7 +20,7 @@ class ItemLoader
 # add the argument merchant_repo to the Merchant object
   def load_items
     data.each do |row|
-      @items << Items.new(row[:id], row[:name], row[:created_at], row[:updated_at])
+      @items << Items.new(row[:id], row[:name], row[:description], row[:unit_price], row[:merchant_id], row[:created_at], row[:updated_at])
     end
     @items
   end

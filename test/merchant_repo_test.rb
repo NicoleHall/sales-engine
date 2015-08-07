@@ -95,5 +95,4 @@ class MerchantRepositoryTest < SeTest
     assert_equal 8, result.count
   end
 
-
 end

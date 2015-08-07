@@ -1,28 +1,28 @@
-require_relative 'merchants'
+require_relative 'items'
 require_relative 'fileio'
 
-class MerchantLoader
+class ItemLoader
 
 #pass in merchant repo into intiialize which becaomes the reader which accesses self on the other end
 # add the reader merchant_repo
 # and # @merchant_repo = merchant_repo into initialize
-  attr_reader :merchants
+  attr_reader :items
 
   def initialize(dir)
-    @merchants = []
+    @items     = []
     @dir       = dir
   end
 
   def data
-    FileIO.load_file("#{@dir}/merchants.csv")
+    FileIO.load_file("#{@dir}/items.csv")
   end
 
 # add the argument merchant_repo to the Merchant object
-  def load_merchants
+  def load_items
     data.each do |row|
-      @merchants << Merchants.new(row[:id], row[:name], row[:created_at], row[:updated_at])
+      @items << Items.new(row[:id], row[:name], row[:created_at], row[:updated_at])
     end
-    @merchants
+    @items
   end
 
 end

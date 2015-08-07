@@ -2,10 +2,11 @@ require_relative 'merchant_loader'
 
 class MerchantRepository
 
-  attr_reader :merchants, :dir
+  attr_reader :merchants, :dir, :sales_engine
   def initialize(dir)
     @merchants = []
     @dir       = dir
+    @sales_engine = sales_engine
   end
 
   def create_merchants
@@ -66,4 +67,7 @@ class MerchantRepository
     find_all_by(:updated_at, updated_at)
   end
 
+  def item(merchant_id)
+    SalesEngine.item_repository
+  end
 end

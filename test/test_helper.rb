@@ -1,6 +1,6 @@
-# require 'minitest/autorun'
-# require 'minitest/pride'
-# require '../lib/sales_engine'
+require 'minitest/autorun'
+require 'minitest/pride'
+require_relative '../lib/sales_engine'
 require 'pry'
 
 class SeTest < Minitest::Test

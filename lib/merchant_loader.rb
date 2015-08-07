@@ -24,7 +24,4 @@ class MerchantLoader
     end
     @merchants
   end
-
-  
-
 end

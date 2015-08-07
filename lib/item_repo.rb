@@ -27,19 +27,19 @@ class ItemRepository
     end
   end
 
-  def find_item_by_id(id)
+  def find_by_id(id)
     find_by(:id, id)
   end
 
-  def find_item_by_name(name)
+  def find_by_name(name)
     find_by(:name, name)
   end
 
-  def find_item_by_created_date(created_at)
+  def find_by_created_date(created_at)
     find_by(:created_at, created_at)
   end
 
-  def find_item_by_updated_date(updated_at)
+  def find_by_updated_date(updated_at)
     find_by(:updated_at, updated_at)
   end
 
@@ -51,19 +51,19 @@ class ItemRepository
     array
   end
 
-  def find_all_items_by_id(id) ## why does this exist?
+  def find_all_by_id(id) ## why does this exist?
     find_all_by(:id, id)
   end
 
-  def find_all_items_by_name(name)
+  def find_all_by_name(name)
     find_all_by(:name, name)
   end
 
-  def find_all_items_by_created_at(created_at)
+  def find_all_by_created_at(created_at)
     find_all_by(:created_at, created_at)
   end
 
-  def find_all_items_by_updated_at(updated_at)
+  def find_all_by_updated_at(updated_at)
     find_all_by(:updated_at, updated_at)
   end
 

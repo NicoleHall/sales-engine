@@ -33,14 +33,14 @@ class ItemRepositoryTest < SeTest
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
 
-    result = ir.find_item_by_id(5)
+    result = ir.find_by_id(5)
     assert_equal 5, result.id
   end
 
   def test_it_can_find_by_name
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
-    result = ir.find_item_by_name("Item Qui Esse")
+    result = ir.find_by_name("Item Qui Esse")
 
     assert_equal "Item Qui Esse", result.name
     ### is this not an array of results?  can I not call count on it?
@@ -49,7 +49,7 @@ class ItemRepositoryTest < SeTest
   def test_it_can_find_by_date_created_at
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
-    result = ir.find_item_by_created_date("2012-03-27 14:53:59 UTC")
+    result = ir.find_by_created_date("2012-03-27 14:53:59 UTC")
 
     assert_equal 1, result.id
     assert_equal "2012-03-27 14:53:59 UTC", result.created_at
@@ -58,42 +58,60 @@ class ItemRepositoryTest < SeTest
   def test_it_can_find_by_date_updated_at
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
-    result = ir.find_item_by_updated_date("2012-03-27 14:53:59 UTC")
+    result = ir.find_by_updated_date("2012-03-27 14:53:59 UTC")
 
     assert_equal "2012-03-27 14:53:59 UTC", result.updated_at
     assert_equal 1, result.id
   end
 
-  def test_it_can_find_all_items_by_id
+  def test_it_can_find_all_by_id
     ### why is this method ?
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
 
-    result = ir.find_all_items_by_id(5)
+    result = ir.find_all_by_id(5)
     assert_equal 5, result[0].id
   end
 
-  def test_it_can_find_all_items_by_name
+  def test_it_can_find_all_by_name
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
 
-    result = ir.find_all_items_by_name("Item Qui Esse")
+    result = ir.find_all_by_name("Item Qui Esse")
     assert_equal 1, result.count
   end
 
-  def test_it_can_find_all_items_by_created_at
+  def test_it_can_find_all_by_created_at
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
 
-    result = ir.find_all_items_by_created_at("2012-03-27 14:53:59 UTC")
+    result = ir.find_all_by_created_at("2012-03-27 14:53:59 UTC")
     assert_equal 10, result.count
   end
 
-  def test_it_can_find_all_items_by_updated_at
+  def test_it_can_find_all_by_updated_at
     ir = ItemRepository.new(fixtures_dir)
     ir.create_items
 
-    result = ir.find_all_items_by_updated_at("2012-03-27 14:53:59 UTC")
+    result = ir.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
+    assert_equal 10, result.count
+  end
+
+  def test_it_can_find_all_by_description
+    skip
+    ir = ItemRepository.new(fixtures_dir)
+    ir.create_items
+
+    result = ir.find_all_by_description("2012-03-27 14:53:59 UTC")
+    # assert_equal 10, result.count
+  end
+
+  def test_it_can_find_all_unit_price
+    skip
+    ir = ItemRepository.new(fixtures_dir)
+    ir.create_items
+
+    result = ir.find_all_by_unit_price("2012-03-27 14:53:59 UTC")
     assert_equal 10, result.count
   end
 

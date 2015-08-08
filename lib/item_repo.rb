@@ -1,16 +1,16 @@
 require_relative 'item_loader'
-
 class ItemRepository
 
   attr_reader :items, :dir, :sales_engine
-  def initialize(dir)
+  def initialize(dir, sales_engine)
     @items = []
     @dir       = dir
     @sales_engine = sales_engine
+    create_items
   end
 
   def create_items
-    @items = ItemLoader.new(dir).load_items
+    @items = ItemLoader.new(dir, self).load_items
   end
 
   def all
@@ -47,12 +47,16 @@ class ItemRepository
     find_by(:description, description)
   end
 
+  def find_by_unit_price(unit_price)
+    find_by(:unit_price, unit_price)
+  end
+
+  def find_by_merchant_id(merchant_id)
+    find_by(:merchant_id, merchant_id)
+  end
+
   def find_all_by(attribute, search_criteria)
-    array = []
-    items.each do |item|
-      array << item if item.send(attribute) == search_criteria
-    end
-    array
+    items.select {|item| item.send(attribute) == search_criteria }
   end
 
   def find_all_by_id(id) ## why does this exist?
@@ -71,7 +75,16 @@ class ItemRepository
     find_all_by(:updated_at, updated_at)
   end
 
-  # def item(item_id)
-  #   SalesEngine.item_repository
-  # end
+  def find_all_by_merchant_id(merchant_id)
+    find_all_by(:merchant_id, merchant_id)
+  end
+
+  def find_all_by_unit_price(unit_price)
+    find_all_by(:unit_price, unit_price)
+  end
+
+  def find_all_by_description(description)
+    find_all_by(:description, description)
+  end
+
 end

@@ -3,14 +3,15 @@ require_relative 'merchant_loader'
 class MerchantRepository
 
   attr_reader :merchants, :dir, :sales_engine
-  def initialize(dir)
+  def initialize(dir, sales_engine)
     @merchants = []
     @dir       = dir
     @sales_engine = sales_engine
+    create_merchants
   end
 
   def create_merchants
-    @merchants = MerchantLoader.new(dir).load_merchants
+    @merchants = MerchantLoader.new(dir, self).load_merchants
   end
 
   def all
@@ -44,11 +45,7 @@ class MerchantRepository
   end
 
   def find_all_by(attribute, search_criteria)
-    array = []
-    merchants.each do |merchant|
-      array << merchant if merchant.send(attribute) == search_criteria
-    end
-    array
+    merchants.select {|item| item.send(attribute) == search_criteria }
   end
 
   def find_all_by_id(id) ## why does this exist?
@@ -67,7 +64,17 @@ class MerchantRepository
     find_all_by(:updated_at, updated_at)
   end
 
-  def item(merchant_id)
-    SalesEngine.item_repository
+
+
+
+
+  def find_items(id)
+    sales_engine.find_items_by_merchant_id(id)
   end
+
+
+
+
+
+
 end

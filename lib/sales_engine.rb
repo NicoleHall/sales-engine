@@ -1,10 +1,12 @@
 require_relative 'merchant_repo'
 require_relative 'item_repo'
+require_relative 'invoice_repository'
 require 'pry'
 class SalesEngine
 
-  attr_reader :merchant_repository, :item_repository
+  attr_reader :merchant_repository, :item_repository, :invoice_repository
   def initialize(dir="data")
+    @invoice_repository = InvoiceRepository.new(dir, self)
     @item_repository = ItemRepository.new(dir, self)
     @merchant_repository = MerchantRepository.new(dir, self)
     @merchant_repository.create_merchants
@@ -14,19 +16,9 @@ class SalesEngine
     item_repository.find_all_by_merchant_id(id) ###this is getting teh wrong stuff, its finding the tiem id not the merchant id
   end
 
-  # def merchant_invoices(merchant_id)
-
-  # def merchant_item(attribute, search_criteria)
-  #   merchant_repository.find_all_by(attribute, search_criteria)
-  # end
-
-  # def find_all_by(attribute, search_criteria)
-  #   array = []
-  #   merchants.each do |item|
-  #     array << item if item.send(attribute) == search_criteria
-  #   end
-  #   array
-  # end
+  def find_invoices_by_merchant_id(id)
+    invoice_repository.find_all_by_merchant_id(id)
+  end
 
 end
 

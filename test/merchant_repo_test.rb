@@ -1,5 +1,5 @@
-require 'test_helper'
-require_relative '../lib/merchant_repo'
+require_relative 'test_helper.rb'
+require_relative '../lib/merchant_repo.rb'
 
 #the tests that look for fixtures data go here
 

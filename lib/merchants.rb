@@ -11,6 +11,11 @@ class Merchants
   def items
     repository.sales_engine.item_repository.find_all_by_merchant_id(id)
   end
+
+  def invoices
+    repository.sales_engine.invoice_repository.find_all_by_merchant_id(id)
+  end
+
 end
 
 

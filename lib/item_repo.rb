@@ -1,29 +1,28 @@
-require_relative 'merchant_loader'
+require_relative 'item_loader'
+class ItemRepository
 
-class MerchantRepository
-
-  attr_reader :merchants, :dir, :sales_engine
+  attr_reader :items, :dir, :sales_engine
   def initialize(dir, sales_engine)
-    @merchants = []
+    @items = []
     @dir       = dir
     @sales_engine = sales_engine
-    create_merchants
+    create_items
   end
 
-  def create_merchants
-    @merchants = MerchantLoader.new(dir, self).load_merchants
+  def create_items
+    @items = ItemLoader.new(dir, self).load_items
   end
 
   def all
-    merchants
+    items
   end
 
   def random
-    merchants.sample
+    items.sample
   end
 
   def find_by(attribute, search_criteria)
-    merchants.detect do |item|
+    items.detect do |item|
       item.send(attribute) == search_criteria
     end
   end
@@ -44,8 +43,20 @@ class MerchantRepository
     find_by(:updated_at, updated_at)
   end
 
+  def find_by_description(description)
+    find_by(:description, description)
+  end
+
+  def find_by_unit_price(unit_price)
+    find_by(:unit_price, unit_price)
+  end
+
+  def find_by_merchant_id(merchant_id)
+    find_by(:merchant_id, merchant_id)
+  end
+
   def find_all_by(attribute, search_criteria)
-    merchants.select {|item| item.send(attribute) == search_criteria }
+    items.select {|item| item.send(attribute) == search_criteria }
   end
 
   def find_all_by_id(id) ## why does this exist?
@@ -64,17 +75,16 @@ class MerchantRepository
     find_all_by(:updated_at, updated_at)
   end
 
-
-
-
-
-  def find_items(id)
-    sales_engine.find_items_by_merchant_id(id)
+  def find_all_by_merchant_id(merchant_id)
+    find_all_by(:merchant_id, merchant_id)
   end
 
+  def find_all_by_unit_price(unit_price)
+    find_all_by(:unit_price, unit_price)
+  end
 
-
-
-
+  def find_all_by_description(description)
+    find_all_by(:description, description)
+  end
 
 end

@@ -10,14 +10,14 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_all
     tr = TransactionRepository.new(fixtures_dir)
-    tr.create_transactions
-    assert_equal 9, tr.all.size
+
+    assert_equal 11, tr.all.size
   end
 
   def test_it_can_return_a_random_transaction_instance
-    skip   ########  !!!!!!!!  Unskip this before assessment, it works
+     skip
+     ########  !!!!!!!!  Unskip this before assessment, it works
     tr= TransactionRepository.new(fixtures_dir)
-    tr.create_transactions
     tr1 = tr.random
     tr2 = tr.random
     tr3 = tr.random
@@ -29,7 +29,6 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_matching_transaction_by_id
     tr = TransactionRepository.new(fixtures_dir)
-    tr.create_transactions
 
     result = tr.find_transaction_by_id(5)
     assert_equal 5, result.id
@@ -37,7 +36,6 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_by_invoice_id
     tr = TransactionRepository.new(fixtures_dir)
-    tr.create_transactions
     result = tr.find_transaction_by_invoice_id("1")
 
     assert_equal "1", result.invoice_id
@@ -45,67 +43,75 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_transaction_by_credit_card_number
     tr = TransactionRepository.new(fixtures_dir)
-    tr.create_transactions
-    result = tr.find_transaction_by_credit_card_number("Ondricka")
+    result = tr.find_transaction_by_credit_card_number("4654405418249632")
 
-    assert_equal "Ondricka", result.credit_card_number
+    assert_equal "4654405418249632", result.credit_card_number
+  end
+
+  def test_it_can_find_by_result
+    tr = TransactionRepository.new(fixtures_dir)
+    result = tr.find_transaction_by_result("success")
+    result2 = tr.find_transaction_by_result("failed")
+
+    assert_equal "success", result.result
+    assert_equal "failed", result2.result
   end
 
   def test_it_can_find_by_date_created_at
-    cr = CustomerRepository.new(fixtures_dir)
-    cr.create_customers
-    result = cr.find_customer_by_created_date("2012-03-27 14:54:09 UTC")
+    tr = TransactionRepository.new(fixtures_dir)
+    result = tr.find_transaction_by_created_at("2012-03-27 14:54:09 UTC")
 
     assert_equal 1, result.id
     assert_equal "2012-03-27 14:54:09 UTC", result.created_at
   end
 
   def test_it_can_find_by_date_updated_at
-    cr = CustomerRepository.new(fixtures_dir)
-    cr.create_customers
-    result = cr.find_customer_by_updated_date("2012-03-27 14:54:09 UTC")
+    tr = TransactionRepository.new(fixtures_dir)
+    result = tr.find_transaction_by_updated_at("2012-03-27 14:54:09 UTC")
 
     assert_equal "2012-03-27 14:54:09 UTC", result.updated_at
     assert_equal 1, result.id
   end
 
-  def test_it_can_find_all_customers_by_id
-    cr = CustomerRepository.new(fixtures_dir)
-    cr.create_customers
+  def test_it_can_find_all_transactions_by_id
+    tr = TransactionRepository.new(fixtures_dir)
+    result = tr.find_all_transactions_by_id(5)
 
-    result = cr.find_all_customers_by_id(5)
     assert_equal 5, result[0].id
   end
 
-  def test_it_can_find_all_customers_by_first_name
-    cr = CustomerRepository.new(fixtures_dir)
-    cr.create_customers
+  def test_it_can_find_all_transactions_by_invoice_id
+    tr = TransactionRepository.new(fixtures_dir)
+    result = tr.find_all_transactions_by_invoice_id("2")
 
-    result = cr.find_all_customers_by_first_name("Joey")
     assert_equal 1, result.count
   end
 
-  def test_it_can_find_all_customers_by_last_name
-    cr = CustomerRepository.new(fixtures_dir)
-    cr.create_customers
+  def test_it_can_find_all_transactions_by_credit_card_number
+    tr = TransactionRepository.new(fixtures_dir)
+    result = tr.find_all_transactions_by_credit_card_number("4654405418249632")
 
-    result = cr.find_all_customers_by_last_name("Ondricka")
     assert_equal 1, result.count
   end
 
-  def test_it_can_find_all_customers_by_created_at
-    cr = CustomerRepository.new(fixtures_dir)
-    cr.create_customers
+  def test_it_can_find_all_transactions_by_result
+    tr = TransactionRepository.new(fixtures_dir)
+    result = tr.find_all_transactions_by_result("failed")
 
-    result = cr.find_all_customers_by_created_at("2012-03-27 14:54:09 UTC")
     assert_equal 1, result.count
   end
 
-  def test_it_can_find_all_customers_by_updated_at
-    cr = CustomerRepository.new(fixtures_dir)
-    cr.create_customers
+  def test_it_can_find_all_transactions_by_created_at
+    tr = TransactionRepository.new(fixtures_dir)
 
-    result = cr.find_all_customers_by_updated_at("2012-03-27 14:54:09 UTC")
+    result = tr.find_all_transactions_by_created_at("2012-03-27 14:54:13 UTC")
+    assert_equal 1, result.count
+  end
+
+  def test_it_can_find_all_transactions_by_updated_at
+    tr = TransactionRepository.new(fixtures_dir)
+
+    result = tr.find_all_transactions_by_updated_at("2012-03-27 14:54:13 UTC")
     assert_equal 1, result.count
   end
 

@@ -134,8 +134,7 @@ class ItemRepositoryTest < SeTest
     assert_equal 10, result[0].id
   end
 
-  def test_it_can_find_all_by_merchant_id
-    skip
+  def test_it_can_find_all_invoices_by_merchant_id
     ir = ItemRepository.new(fixtures_dir, sales_engine)
 
     result = ir.find_all_by_merchant_id(1)

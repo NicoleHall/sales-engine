@@ -18,7 +18,5 @@ class Merchants
 
 end
 
-
-
 # Date.parse(created_at)
 # Date.parse(updated_at)

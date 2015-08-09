@@ -1,7 +1,4 @@
 require 'test_helper'
-require_relative '../lib/item_repo'
-
-#the tests that look for fixtures data go here
 
 class ItemRepositoryTest < SeTest
   attr_reader :item_repository, :sales_engine

@@ -1,6 +1,4 @@
 require 'test_helper'
-require_relative '../lib/invoice_repository'
-require_relative '../lib/sales_engine'
 
 class InvoiceRepositoryTest < SeTest
   attr_reader :invoice_repository, :sales_engine

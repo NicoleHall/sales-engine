@@ -11,12 +11,17 @@ class Transactions
                  updated_at,
                  transaction_repository)
     @id                          = id.to_i
-    @invoice_id                  = invoice_id#.to_i
-    @credit_card_number          = credit_card_number#.to_i
+    @invoice_id                  = invoice_id.to_i
+    @credit_card_number          = credit_card_number.to_i
     @credit_card_expiration_date = credit_card_expiration_date# Date.parse(created_at)
     @result                      = result
     @created_at                  = created_at# Date.parse(created_at)
     @updated_at                  = updated_at# Date.parse(updated_at)
     @transaction_repository      = transaction_repository
   end
+
+   def invoices
+     transaction_repository.sales_engine.find_invoices_for_transactions(invoice_id)
+   end
+
 end

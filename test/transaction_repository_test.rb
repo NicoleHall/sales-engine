@@ -1,6 +1,4 @@
 require_relative 'test_helper.rb'
-require_relative '../lib/transaction_repository.rb'
-#the tests that look for fixtures data go here
 
 class TransactionRepositoryTest < SeTest
 
@@ -44,16 +42,16 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_by_invoice_id
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_transaction_by_invoice_id("1")
+    result = tr.find_transaction_by_invoice_id(1)
 
-    assert_equal "1", result.invoice_id
+    assert_equal 1, result.invoice_id
   end
 
   def test_it_can_find_transaction_by_credit_card_number
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_transaction_by_credit_card_number("4654405418249632")
+    result = tr.find_transaction_by_credit_card_number(4654405418249632)
 
-    assert_equal "4654405418249632", result.credit_card_number
+    assert_equal 4654405418249632, result.credit_card_number
   end
 
   def test_it_can_find_by_result
@@ -90,14 +88,14 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_all_transactions_by_invoice_id
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_all_transactions_by_invoice_id("2")
+    result = tr.find_all_transactions_by_invoice_id(2)
 
     assert_equal 1, result.count
   end
 
   def test_it_can_find_all_transactions_by_credit_card_number
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_all_transactions_by_credit_card_number("4654405418249632")
+    result = tr.find_all_transactions_by_credit_card_number(4654405418249632)
 
     assert_equal 1, result.count
   end

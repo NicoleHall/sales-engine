@@ -1,5 +1,4 @@
 require 'test_helper'
-require_relative "../lib/items"
 
 class ItemsTest < SeTest
 
@@ -12,5 +11,5 @@ class ItemsTest < SeTest
   end
 
 
-  
+
 end

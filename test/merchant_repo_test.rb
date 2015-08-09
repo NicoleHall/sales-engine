@@ -1,8 +1,4 @@
 require 'test_helper'
-require_relative '../lib/merchant_repo'
-require_relative '../lib/sales_engine'
-
-#the tests that look for fixtures data go here
 
 class MerchantRepositoryTest < SeTest
   attr_reader :merchant_repository, :sales_engine

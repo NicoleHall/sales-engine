@@ -8,12 +8,13 @@ class Merchants
     @updated_at = updated_at
     @repository = repository
   end
+
   def items
-    repository.sales_engine.item_repository.find_all_by_merchant_id(id)
+    repository.sales_engine.find_items_by_merchant_id(id)
   end
 
   def invoices
-    repository.sales_engine.invoice_repository.find_all_by_merchant_id(id)
+    repository.sales_engine.find_invoices_by_merchant_id(id)
   end
 
 end

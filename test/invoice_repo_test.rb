@@ -16,7 +16,7 @@ class InvoiceRepositoryTest < SeTest
 
   def test_it_can_find_all
     invoices = invoice_repository.all
-    assert_equal 10, invoices.size
+    assert_equal 11, invoices.size
   end
 
   def test_it_can_return_a_random_merchant_instance
@@ -100,7 +100,7 @@ class InvoiceRepositoryTest < SeTest
     invoice_repository = InvoiceRepository.new(fixtures_dir, sales_engine)
 
     result = invoice_repository.find_all_by_status("shipped")
-    assert_equal 10, result.count
+    assert_equal 11, result.count
   end
 
   def test_it_can_find_all_invoices_by_created_at

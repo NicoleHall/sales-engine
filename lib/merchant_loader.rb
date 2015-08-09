@@ -14,7 +14,7 @@ class MerchantLoader
   def data
     FileIO.load_file("#{@dir}/merchants.csv")
   end
-
+  
   def load_merchants
     data.each do |row|
       @merchants << Merchants.new(row[:id], row[:name], row[:created_at], row[:updated_at], merchant_repository)

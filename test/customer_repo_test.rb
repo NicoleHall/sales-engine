@@ -1,22 +1,29 @@
 require_relative 'test_helper.rb'
+require_relative '../lib/sales_engine'
 require_relative '../lib/customer_repository.rb'
-#the tests that look for fixtures data go here
 
 class CustomerRepositoryTest < SeTest
+
+  attr_reader :merchant_repository, :sales_engine
+
+  def setup
+    @sales_engine = SalesEngine.new(fixtures_dir)
+    @customer_repository = CustomerRepository.new(fixtures_dir, sales_engine)
+  end
 
   def test_has_a_class
     assert CustomerRepository
   end
 
   def test_it_can_find_all
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
-    assert_equal 9, cr.all.size
+    assert_equal 10, cr.all.size
   end
 
   def test_it_can_return_a_random_customer_instance
     skip   ########  !!!!!!!!  Unskip this before assessment, it works
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
     cr1 = cr.random
     cr2 = cr.random
@@ -28,7 +35,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_matching_customer_by_id
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
 
     result = cr.find_customer_by_id(5)
@@ -36,7 +43,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_by_first_name
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
     result = cr.find_customer_by_first_name("Joey")
 
@@ -44,7 +51,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_by_last_name
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
     result = cr.find_customer_by_last_name("Ondricka")
 
@@ -52,7 +59,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_by_date_created_at
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
     result = cr.find_customer_by_created_date("2012-03-27 14:54:09 UTC")
 
@@ -61,7 +68,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_by_date_updated_at
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
     result = cr.find_customer_by_updated_date("2012-03-27 14:54:09 UTC")
 
@@ -70,7 +77,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_all_customers_by_id
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
 
     result = cr.find_all_customers_by_id(5)
@@ -78,7 +85,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_all_customers_by_first_name
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
 
     result = cr.find_all_customers_by_first_name("Joey")
@@ -86,7 +93,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_all_customers_by_last_name
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
 
     result = cr.find_all_customers_by_last_name("Ondricka")
@@ -94,7 +101,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_all_customers_by_created_at
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
 
     result = cr.find_all_customers_by_created_at("2012-03-27 14:54:09 UTC")
@@ -102,7 +109,7 @@ class CustomerRepositoryTest < SeTest
   end
 
   def test_it_can_find_all_customers_by_updated_at
-    cr = CustomerRepository.new(fixtures_dir)
+    cr = CustomerRepository.new(fixtures_dir, sales_engine)
     cr.create_customers
 
     result = cr.find_all_customers_by_updated_at("2012-03-27 14:54:09 UTC")

@@ -3,7 +3,7 @@ require_relative 'transaction_loader'
 class TransactionRepository
 
   attr_reader :transactions, :dir, :sales_engine
-  def initialize(dir)
+  def initialize(dir, sales_engine)
     @transactions = []
     @dir          = dir
     @sales_engine = sales_engine
@@ -53,11 +53,7 @@ class TransactionRepository
   end
 
   def find_all_by(attribute, search_criteria)
-    array = []
-    transactions.each do |transaction|
-      array << transaction if transaction.send(attribute) == search_criteria
-    end
-    array
+    transactions.select {|item| item.send(attribute) == search_criteria }
   end
 
   def find_all_transactions_by_id(id) ## why does this exist?

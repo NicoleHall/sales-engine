@@ -1,6 +1,4 @@
 require_relative 'test_helper.rb'
-require_relative '../lib/sales_engine'
-require_relative '../lib/customer_repository.rb'
 
 class CustomerRepositoryTest < SeTest
 

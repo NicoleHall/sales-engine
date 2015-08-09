@@ -1,6 +1,5 @@
 require_relative 'test_helper.rb'
-require_relative '../lib/invoice_item_repository.rb'
-#the tests that look for fixtures data go here
+
 class InvoiceItemRepositoryTest < SeTest
 
   def test_has_a_class

@@ -11,7 +11,7 @@ class InvoiceItemRepositoryTest < SeTest
 
     iir = InvoiceItemRepository.new(fixtures_dir)
 
-    assert_equal 9, iir.all.size
+    assert_equal 10, iir.all.size
   end
 
   def test_it_can_return_a_random_invoice_item_instance
@@ -118,14 +118,14 @@ class InvoiceItemRepositoryTest < SeTest
     iir = InvoiceItemRepository.new(fixtures_dir)
 
     result = iir.find_all_invoice_items_by_created_at("2012-03-27 14:54:09 UTC")
-    assert_equal 9, result.count
+    assert_equal 10, result.count
   end
 
   def test_it_can_find_all_invoice_items_by_updated_at
     iir = InvoiceItemRepository.new(fixtures_dir)
 
     result = iir.find_all_invoice_items_by_updated_at("2012-03-27 14:54:09 UTC")
-    assert_equal 9, result.count
+    assert_equal 10, result.count
   end
 
 end

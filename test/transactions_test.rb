@@ -1,4 +1,4 @@
-require_relative 'test_helper.rb'
+require 'test_helper'
 require_relative "../lib/sales_engine"
 
 class TransactionTest < SeTest

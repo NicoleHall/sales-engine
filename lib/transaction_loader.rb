@@ -5,7 +5,7 @@ class TransactionLoader
 
   attr_reader :transactions, :transaction_repository
 
-  def initialize(dir)
+  def initialize(dir, transaction_repository)
     @transactions           = []
     @dir                    = dir
     @transaction_repository = transaction_repository

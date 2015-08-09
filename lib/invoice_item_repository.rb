@@ -57,11 +57,7 @@ class InvoiceItemRepository
   end
 
   def find_all_by(attribute, search_criteria)
-    array = []
-    invoice_items.each do |invoice|
-      array << invoice if invoice.send(attribute) == search_criteria
-    end
-    array
+    invoice_items.select {|item| item.send(attribute) == search_criteria }
   end
 
   def find_all_invoice_items_by_id(id)

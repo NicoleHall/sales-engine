@@ -49,11 +49,7 @@ class CustomerRepository
   end
 
   def find_all_by(attribute, search_criteria)
-    array = []
-    customers.each do |customer|
-      array << customer if customer.send(attribute) == search_criteria
-    end
-    array
+    customers.select {|item| item.send(attribute) == search_criteria }
   end
 
   def find_all_customers_by_id(id) ## why does this exist?

@@ -44,11 +44,11 @@ class InvoiceRepository
     find_by(:status, status)
   end
 
-  def find_by_created_at_date(created_at)
+  def find_by_created_at(created_at)
     find_by(:created_at, created_at)
   end
 
-  def find_by_updated_date(updated_at)
+  def find_by_updated_at(updated_at)
     find_by(:updated_at, updated_at)
   end
 

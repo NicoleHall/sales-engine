@@ -12,12 +12,22 @@ class MerchantsTest < SeTest
   end
 
 
-  def test_it_requires_the_right_merchants
-  result = merchant_repository.merchants[0].items
-  result2 = result.map do |item|
-    item.id
-  end
+  def test_it_can_access_the_items_associated_with_a_merchant
+    result = merchant_repository.merchants[0].items
+    result2 = result.map do |item|
+                      item.id
+                      end
     assert_equal [1,2,3,4], result2[0..3]
     assert_equal "Item Qui Esse", result[0].name
   end
+
+  def test_it_requires_the_right_merchants_from_invoices
+    result = merchant_repository.merchants[7].invoices
+    result2 = result.map do |invoice|
+                        invoice.id
+                      end
+    assert_equal [12], result2[0..3]
+    assert_equal 3, result[0].customer_id
+  end
+
 end

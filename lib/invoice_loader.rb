@@ -15,7 +15,6 @@ class InvoiceLoader
     FileIO.load_file("#{@dir}/invoices.csv")
   end
 
-  # add the argument invoice_repository to the Invoice object
   def load_invoices
     data.each do |row|
       @invoices << Invoices.new(row[:id], row[:customer_id], row[:merchant_id], row[:status], row[:created_at], row[:updated_at], invoice_repository)

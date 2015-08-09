@@ -49,7 +49,7 @@ class MerchantRepositoryTest < SeTest
 
   def test_it_can_find_by_date_created_at
     merchant_repository = MerchantRepository.new(fixtures_dir, sales_engine)
-    result = merchant_repository.find_by_created_date("2012-03-27 14:53:59 UTC")
+    result = merchant_repository.find_by_created_at("2012-03-27 14:53:59 UTC")
 
     assert_equal 1, result.id
     assert_equal "2012-03-27 14:53:59 UTC", result.created_at
@@ -57,7 +57,7 @@ class MerchantRepositoryTest < SeTest
 
   def test_it_can_find_by_date_updated_at
     merchant_repository = MerchantRepository.new(fixtures_dir, sales_engine)
-    result = merchant_repository.find_by_updated_date("2012-03-27 16:12:25 UTC")
+    result = merchant_repository.find_by_updated_at("2012-03-27 16:12:25 UTC")
 
     assert_equal "2012-03-27 16:12:25 UTC", result.updated_at
     assert_equal 6, result.id

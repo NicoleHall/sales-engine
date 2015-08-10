@@ -17,8 +17,14 @@ class SalesEngineTest < SeTest
   def test_it_can_find_invoices_associate_with_a_merchant
     se = SalesEngine.new(fixtures_dir)
     result = se.find_invoices_by_merchant_id(26)
-    # binding.pry
+
     assert_equal "shipped", result[0].status
   end
 
+  def test_it_can_find_invoices_associate_with_a_transaction
+    se = SalesEngine.new(fixtures_dir)
+    result = se.find_invoice_for_transactions(5)
+
+    assert_equal 1, result.customer_id
+  end
 end

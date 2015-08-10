@@ -4,8 +4,8 @@ class MerchantRepository
 
   attr_reader :merchants, :dir, :sales_engine
   def initialize(dir, sales_engine)
-    @merchants = []
-    @dir       = dir
+    @merchants    = []
+    @dir          = dir
     @sales_engine = sales_engine
     create_merchants
   end

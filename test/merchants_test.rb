@@ -2,14 +2,12 @@ require 'test_helper'
 
 class MerchantsTest < SeTest
 
-  attr_reader :merchant_repository, :sales_engine, :item_repository
+  attr_reader :merchant_repository, :sales_engine
 
   def setup
     @sales_engine = SalesEngine.new(fixtures_dir)
     @merchant_repository = MerchantRepository.new(fixtures_dir, sales_engine)
-    @item_repository = ItemRepository.new(fixtures_dir, sales_engine)
   end
-
 
   def test_it_can_access_the_items_associated_with_a_merchant
     result = merchant_repository.merchants[0].items

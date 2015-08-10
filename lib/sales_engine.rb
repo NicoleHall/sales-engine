@@ -29,12 +29,24 @@ class SalesEngine
     invoice_repository.find_all_by_customer_id(id)
   end
 
-  def find_invoices_for_transactions(invoice_id)
-    invoice_repository.find_all_by_id(invoice_id)
+  def find_invoice_for_transactions(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
   end
 
   def find_invoice_items_by_item_id(item_id)
     invoice_item_repository.find_all_invoice_items_by_item_id(item_id)
+  end
+
+  def find_merchant_for_item(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
+  end
+
+  def find_invoice_for_invoice_item(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
+  end
+
+  def find_item_for_invoice_item_by_item_id(item_id)
+    item_repository.find_by_id(item_id)
   end
 
 end

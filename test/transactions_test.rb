@@ -13,13 +13,9 @@ class TransactionTest < SeTest
     assert Transactions
   end
 
-  def test_it_can_access_invoices_for_a_transaction
-    result = transaction_repository.transactions[0].invoices
-    result2 = result.map do |invoice|
-                      invoice.id
-                      end
-    assert_equal [1], result2[0..3]
-    assert_equal 26, result[0].merchant_id
+  def test_it_can_return_an_invoice_for_a_transaction
+    result = transaction_repository.transactions[0].invoice
+    assert_equal 26, result.merchant_id
   end
 
 end

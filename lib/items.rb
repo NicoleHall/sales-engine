@@ -18,8 +18,13 @@ class Items
     repository.sales_engine.find_invoice_items_by_item_id(id)
   end
 
+  def merchants
+    repository.sales_engine.find_merchant_for_item(merchant_id)
+  end
+
 end
 
+# repository.sales_engine.find_invoices_for_transactions(invoice_id)
 
 # Date.parse(created_at)
 # Date.parse(updated_at)

@@ -23,9 +23,8 @@ class SalesEngineTest < SeTest
 
   def test_it_can_find_invoices_associate_with_a_transaction
     se = SalesEngine.new(fixtures_dir)
-    result = se.find_invoices_for_transactions(5)
+    result = se.find_invoice_for_transactions(5)
 
-    assert_equal 1, result[0].customer_id
-    assert_equal 5, result[0].id
+    assert_equal 1, result.customer_id
   end
 end

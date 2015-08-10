@@ -95,7 +95,7 @@ class InvoiceItemRepositoryTest < SeTest
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
     result = iir.find_all_invoice_items_by_item_id(2)
 
-    assert_equal 2, result.count
+    assert_equal 3, result.count
   end
 
   def test_it_can_find_all_invoice_items_by_invoice_id

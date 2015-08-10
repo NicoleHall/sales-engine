@@ -14,6 +14,10 @@ class Items
     @repository     = repository
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def invoice_items
     repository.sales_engine.find_invoice_items_by_item_id(id)
   end

@@ -13,6 +13,11 @@ class Items
     @updated_at     = updated_at
     @repository     = repository
   end
+
+  def invoice_items
+    repository.sales_engine.find_invoice_items_by_item_id(id)
+  end
+
 end
 
 

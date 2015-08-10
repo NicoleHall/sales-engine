@@ -7,13 +7,14 @@ require_relative 'transaction_repository'
 class SalesEngine
 
   attr_reader :merchant_repository, :item_repository, :invoice_repository,
-              :customer_repository, :transaction_repository
+              :customer_repository, :transaction_repository, :invoice_item_repository
   def initialize(dir="data")
-    @invoice_repository ||= InvoiceRepository.new(dir, self)
-    @item_repository ||= ItemRepository.new(dir, self)
-    @merchant_repository ||= MerchantRepository.new(dir, self)
-    @customer_repository ||= CustomerRepository.new(dir, self)
-    @transaction_repository ||= TransactionRepository.new(dir, self)
+    @invoice_repository      ||= InvoiceRepository.new(dir, self)
+    @item_repository         ||= ItemRepository.new(dir, self)
+    @merchant_repository     ||= MerchantRepository.new(dir, self)
+    @customer_repository     ||= CustomerRepository.new(dir, self)
+    @transaction_repository  ||= TransactionRepository.new(dir, self)
+    @invoice_item_repository ||= InvoiceItemRepository.new(dir, self)
   end
 
   def find_items_by_merchant_id(id)
@@ -30,6 +31,10 @@ class SalesEngine
 
   def find_invoices_for_transactions(invoice_id)
     invoice_repository.find_all_by_id(invoice_id)
+  end
+
+  def find_invoice_items_by_item_id(item_id)
+    invoice_item_repository.find_all_invoice_items_by_item_id(item_id)
   end
 
 end

@@ -3,7 +3,7 @@ require_relative 'invoice_item_loader'
 class InvoiceItemRepository
 
   attr_reader :invoice_items, :dir, :sales_engine
-  def initialize(dir)
+  def initialize(dir, sales_engine)
     @invoice_items = []
     @dir           = dir
     @sales_engine  = sales_engine

@@ -2,12 +2,11 @@ require 'test_helper'
 
 class TransactionTest < SeTest
 
-  attr_reader :transaction_repository, :sales_engine, :invoice_repository
+  attr_reader :transaction_repository, :sales_engine
 
   def setup
     @sales_engine = SalesEngine.new(fixtures_dir)
     @transaction_repository = TransactionRepository.new(fixtures_dir, sales_engine)
-    @invoice_repository = InvoiceRepository.new(fixtures_dir, sales_engine)
   end
 
   def test_it_has_a_class

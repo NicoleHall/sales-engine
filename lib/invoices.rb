@@ -31,12 +31,10 @@ class Invoices
   end
 
   def items
-  array = []
-  invoice_items.each do |invoice_item|
+  invoice_items.map do |invoice_item|
     x = invoice_item.item_id
-    array << invoice_item.invoice_item_repository.sales_engine.find_item_for_invoice_item_by_item_id(x)
+    invoice_item.invoice_item_repository.sales_engine.find_item_for_invoice_item_by_item_id(x)
     end
-    array
   #   invoice_repository.sales_engine.find_items_by_way_of_invoice_items(id)
   end
 

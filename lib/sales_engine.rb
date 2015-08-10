@@ -3,6 +3,7 @@ require_relative 'item_repo'
 require_relative 'invoice_repository'
 require_relative 'customer_repository'
 require_relative 'transaction_repository'
+require_relative 'invoice_items'
 
 class SalesEngine
 
@@ -48,6 +49,30 @@ class SalesEngine
   def find_item_for_invoice_item_by_item_id(item_id)
     item_repository.find_by_id(item_id)
   end
+
+  def find_merchant_for_an_invoice(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
+  end
+
+  def find_customer_for_an_invoice(customer_id)
+    customer_repository.find_by_id(customer_id)
+  end
+
+  def find_transactions_for_an_invoice(id)
+    transaction_repository.find_all_transactions_by_invoice_id(id)
+  end
+
+  def find_invoice_items_for_an_invoice(id)
+    invoice_item_repository.find_all_invoice_items_by_invoice_id(id)
+  end
+
+  def find_all_item_for_invoice_item_by_item_id(item_id)
+    item_repository.find_by_id(item_id)
+  end
+
+  # def find_items_by_way_of_invoice_items(id)
+  #   invoice_item_repository.find_all_invoice_items_by_id(id)
+  # end
 
 end
 

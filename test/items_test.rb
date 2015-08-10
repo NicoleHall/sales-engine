@@ -16,8 +16,7 @@ class ItemsTest < SeTest
                         invoice.id
                       end
     result2 = result[0..4]
-    assert_equal [10, 11, 12], result2[0..3]
-    assert_equal 11, iic[1].id
+    assert_equal [11], result2[0..3]
   end
 
   def test_it_can_find_a_merchant_by_item_id

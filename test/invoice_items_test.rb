@@ -17,6 +17,6 @@ class InvoiceItemsTest < SeTest
 
   def test_it_can_return_an_item_for_an_invoice_item
     result = invoice_item_repository.invoice_items[11].item
-    assert_equal "Item Autem Minima", result.name
+    assert_equal "Item Qui Esse", result.name
   end
 end

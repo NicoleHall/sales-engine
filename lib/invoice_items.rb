@@ -21,4 +21,7 @@ class InvoiceItems
     invoice_item_repository.sales_engine.find_item_for_invoice_item_by_item_id(item_id)
   end
 
+  def items_for_invoices
+    invoice_item_repository.sales_engine.find_item_for_invoice_item_by_item_id(invoice_id)
+  end
 end

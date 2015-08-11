@@ -23,4 +23,13 @@ class CustomersTest < SeTest
     assert_equal 1, result[3].customer_id
   end
 
+  def test_it_can_find_all_transactions_for_a_customer
+    result = customer_repository.customers[0].transactions
+    result2 = result.map do |transaction|
+        transaction.id
+      end
+
+    assert_equal [1, 2, 3, 4, 5, 6, 7], result2
+  end
+
 end

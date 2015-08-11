@@ -13,6 +13,10 @@ class InvoiceItems
     @invoice_item_repository = invoice_item_repository
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def invoice
     invoice_item_repository.sales_engine.find_invoice_for_invoice_item(invoice_id)
   end

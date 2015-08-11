@@ -20,7 +20,7 @@ class ItemsTest < SeTest
   end
 
   def test_it_can_find_a_merchant_by_item_id
-    merchant = item_repository.items[1].merchants
+    merchant = item_repository.items[1].merchant
 
     assert_equal 1, merchant.id
   end

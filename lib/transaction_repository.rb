@@ -10,6 +10,10 @@ class TransactionRepository
     create_transactions
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def create_transactions
     @transactions = TransactionLoader.new(dir, self).load_transactions
   end
@@ -28,27 +32,27 @@ class TransactionRepository
     end
   end
 
-  def find_transaction_by_id(id)
+  def find_by_id(id)
     find_by(:id, id)
   end
 
-  def find_transaction_by_invoice_id(invoice_id)
+  def find_by_invoice_id(invoice_id)
     find_by(:invoice_id, invoice_id)
   end
 
-  def find_transaction_by_credit_card_number(credit_card_number)
+  def find_by_credit_card_number(credit_card_number)
     find_by(:credit_card_number, credit_card_number)
   end
 
-  def find_transaction_by_result(result)
+  def find_by_result(result)
     find_by(:result, result)
   end
 
-  def find_transaction_by_created_at(created_at)
+  def find_by_created_at(created_at)
     find_by(:created_at, created_at)
   end
 
-  def find_transaction_by_updated_at(updated_at)
+  def find_by_updated_at(updated_at)
     find_by(:updated_at, updated_at)
   end
 
@@ -56,27 +60,27 @@ class TransactionRepository
     transactions.select {|item| item.send(attribute) == search_criteria }
   end
 
-  def find_all_transactions_by_id(id) ## why does this exist?
+  def find_all_by_id(id) ## why does this exist?
     find_all_by(:id, id)
   end
 
-  def find_all_transactions_by_invoice_id(invoice_id)
+  def find_all_by_invoice_id(invoice_id)
     find_all_by(:invoice_id, invoice_id)
   end
 
-  def find_all_transactions_by_credit_card_number(credit_card_number)
+  def find_all_by_credit_card_number(credit_card_number)
     find_all_by(:credit_card_number, credit_card_number)
   end
 
-  def find_all_transactions_by_result(result)
+  def find_all_by_result(result)
     find_all_by(:result, result)
   end
 
-  def find_all_transactions_by_created_at(created_at)
+  def find_all_by_created_at(created_at)
     find_all_by(:created_at, created_at)
   end
 
-  def find_all_transactions_by_updated_at(updated_at)
+  def find_all_by_updated_at(updated_at)
     find_all_by(:updated_at, updated_at)
   end
 

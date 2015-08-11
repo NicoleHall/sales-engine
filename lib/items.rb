@@ -22,7 +22,7 @@ class Items
     repository.sales_engine.find_invoice_items_by_item_id(id)
   end
 
-  def merchants
+  def merchant
     repository.sales_engine.find_merchant_for_item(merchant_id)
   end
 

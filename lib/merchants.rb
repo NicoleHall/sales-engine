@@ -9,6 +9,10 @@ class Merchants
     @repository = repository
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def items
     repository.sales_engine.find_items_by_merchant_id(id)
   end

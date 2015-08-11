@@ -10,6 +10,10 @@ class InvoiceRepository
     create_invoices
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def create_invoices
     @invoices = InvoiceLoader.new(dir, self).load_invoices
   end

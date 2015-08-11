@@ -15,7 +15,7 @@ class ItemRepositoryTest < SeTest
   def test_it_can_find_all
     ir = ItemRepository.new(fixtures_dir, sales_engine)
 
-    assert_equal 10, ir.all.size
+    assert_equal 11, ir.all.size
   end
 
   def test_it_can_return_a_random_item_instance
@@ -59,7 +59,9 @@ class ItemRepositoryTest < SeTest
     ir = ItemRepository.new(fixtures_dir, sales_engine)
 
     result = ir.find_by_unit_price(4291)
+    result1 = ir.find_by_unit_price(93519)
     assert_equal 4, result.id
+    assert_equal 1720, result1.id
   end
 
   def test_it_can_find_matching_item_by_merchant_id
@@ -127,7 +129,7 @@ class ItemRepositoryTest < SeTest
   def test_it_can_find_all_by_unit_price
     ir = ItemRepository.new(fixtures_dir, sales_engine)
 
-    result = ir.find_all_by_unit_price(34018)
+    result = ir.find_all_by_unit_price(BigDecimal.new(34018))
     assert_equal 10, result[0].id
   end
 

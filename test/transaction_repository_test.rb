@@ -15,7 +15,7 @@ class TransactionRepositoryTest < SeTest
   def test_it_can_find_all
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
 
-    assert_equal 11, tr.all.size
+    assert_equal 20, tr.all.size
   end
 
   def test_it_can_return_a_random_transaction_instance
@@ -102,14 +102,14 @@ class TransactionRepositoryTest < SeTest
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
     result = tr.find_all_by_result("failed")
 
-    assert_equal 1, result.count
+    assert_equal 7, result.count
   end
 
   def test_it_can_find_all_transactions_by_created_at
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
 
     result = tr.find_all_by_created_at("2012-03-27 14:54:10 UTC")
-    assert_equal 9, result.count
+    assert_equal 18, result.count
   end
 
   def test_it_can_find_all_transactions_by_updated_at

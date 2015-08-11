@@ -15,7 +15,7 @@ class TransactionTest < SeTest
 
   def test_it_can_return_an_invoice_for_a_transaction
     result = transaction_repository.transactions[0].invoice
-    assert_equal 26, result.merchant_id
+    assert_equal 1, result.merchant_id
   end
 
 end

@@ -2,7 +2,7 @@ require_relative 'test_helper.rb'
 
 class CustomerRepositoryTest < SeTest
 
-  attr_reader :merchant_repository, :sales_engine
+  attr_reader :customer_repository, :sales_engine
 
   def setup
     @sales_engine = SalesEngine.new(fixtures_dir)

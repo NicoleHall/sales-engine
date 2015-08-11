@@ -35,42 +35,42 @@ class InvoiceItemRepositoryTest < SeTest
   def test_it_can_find_matching_invoice_item_by_id
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
 
-    result = iir.find_invoice_item_by_id(1)
+    result = iir.find_by_id(1)
     assert_equal 1, result.id
   end
 
   def test_it_can_find_by_item_id
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_invoice_item_by_item_id(539)
+    result = iir.find_by_item_id(539)
 
     assert_equal 539, result.item_id
   end
 
-  def test_it_can_find_invoice_item_by_invoice_id
+  def test_it_can_find_by_invoice_id
 
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_invoice_item_by_invoice_id(1)
+    result = iir.find_by_invoice_id(1)
 
     assert_equal 1, result.invoice_id
   end
 
   def test_it_can_find_by_quantity
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_invoice_item_by_quantity(5)
+    result = iir.find_by_quantity(5)
 
     assert_equal 5, result.quantity
   end
 
   def test_it_can_find_by_unit_price
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_invoice_item_by_unit_price(13635)
+    result = iir.find_by_unit_price(13635)
 
     assert_equal 13635, result.unit_price
   end
 
   def test_it_can_find_by_date_created_at
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_invoice_item_by_created_at("2012-03-27 14:54:09 UTC")
+    result = iir.find_by_created_at("2012-03-27 14:54:09 UTC")
 
     assert_equal 1, result.id
     assert_equal "2012-03-27 14:54:09 UTC", result.created_at
@@ -78,7 +78,7 @@ class InvoiceItemRepositoryTest < SeTest
 
   def test_it_can_find_by_date_updated_at
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_invoice_item_by_updated_at("2012-03-27 14:54:09 UTC")
+    result = iir.find_by_updated_at("2012-03-27 14:54:09 UTC")
 
     assert_equal "2012-03-27 14:54:09 UTC", result.updated_at
     assert_equal 1, result.id
@@ -86,21 +86,21 @@ class InvoiceItemRepositoryTest < SeTest
 
   def test_it_can_find_all_invoice_items_by_id
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_all_invoice_items_by_id(5)
+    result = iir.find_all_by_id(5)
 
     assert_equal 5, result[0].id
   end
 
   def test_it_can_find_all_invoice_items_by_item_id
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_all_invoice_items_by_item_id(2)
+    result = iir.find_all_by_item_id(2)
 
     assert_equal 1, result.count
   end
 
   def test_it_can_find_all_invoice_items_by_invoice_id
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_all_invoice_items_by_invoice_id(1)
+    result = iir.find_all_by_invoice_id(1)
 
     assert_equal 8, result.count
   end
@@ -108,14 +108,14 @@ class InvoiceItemRepositoryTest < SeTest
   def test_it_can_find_all_invoice_items_by_quantity
 
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_all_invoice_items_by_quantity(5)
+    result = iir.find_all_by_quantity(5)
 
     assert_equal 2, result.count
   end
 
   def test_it_can_find_all_invoice_items_by_unit_price
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
-    result = iir.find_all_invoice_items_by_unit_price(13635)
+    result = iir.find_all_by_unit_price(13635)
 
     assert_equal 1, result.count
   end
@@ -123,14 +123,14 @@ class InvoiceItemRepositoryTest < SeTest
   def test_it_can_find_all_invoice_items_by_created_at
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
 
-    result = iir.find_all_invoice_items_by_created_at("2012-03-27 14:54:09 UTC")
+    result = iir.find_all_by_created_at("2012-03-27 14:54:09 UTC")
     assert_equal 10, result.count
   end
 
   def test_it_can_find_all_invoice_items_by_updated_at
     iir = InvoiceItemRepository.new(fixtures_dir, sales_engine)
 
-    result = iir.find_all_invoice_items_by_updated_at("2012-03-27 14:54:09 UTC")
+    result = iir.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
     assert_equal 12, result.count
   end
 

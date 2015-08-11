@@ -1,9 +1,10 @@
-require_relative 'merchant_repo'
-require_relative 'item_repo'
+require_relative 'merchant_repository'
+require_relative 'item_repository'
 require_relative 'invoice_repository'
 require_relative 'customer_repository'
 require_relative 'transaction_repository'
-require_relative 'invoice_items'
+require_relative 'invoice_item_repository'
+require_relative 'fileio'
 
 class SalesEngine
 
@@ -16,6 +17,19 @@ class SalesEngine
     @customer_repository     ||= CustomerRepository.new(dir, self)
     @transaction_repository  ||= TransactionRepository.new(dir, self)
     @invoice_item_repository ||= InvoiceItemRepository.new(dir, self)
+  end
+
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
+  def startup
+    @customer_repository
+    @invoice_repository
+    @item_repository
+    @merchant_repository
+    @transaction_repository
+    @invoice_item_repository
   end
 
   def find_items_by_merchant_id(id)
@@ -35,7 +49,7 @@ class SalesEngine
   end
 
   def find_invoice_items_by_item_id(item_id)
-    invoice_item_repository.find_all_invoice_items_by_item_id(item_id)
+    invoice_item_repository.find_all_by_item_id(item_id)
   end
 
   def find_merchant_for_item(merchant_id)
@@ -59,11 +73,11 @@ class SalesEngine
   end
 
   def find_transactions_for_an_invoice(id)
-    transaction_repository.find_all_transactions_by_invoice_id(id)
+    transaction_repository.find_all_by_invoice_id(id)
   end
 
   def find_invoice_items_for_an_invoice(id)
-    invoice_item_repository.find_all_invoice_items_by_invoice_id(id)
+    invoice_item_repository.find_all_by_invoice_id(id)
   end
 
   def find_all_item_for_invoice_item_by_item_id(item_id)

@@ -10,6 +10,10 @@ class MerchantRepository
     create_merchants
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def create_merchants
     @merchants = MerchantLoader.new(dir, self).load_merchants
   end

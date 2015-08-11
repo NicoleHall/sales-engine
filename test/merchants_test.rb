@@ -23,7 +23,7 @@ class MerchantsTest < SeTest
     result2 = result.map do |invoice|
                         invoice.id
                       end
-    assert_equal [12], result2[0..3]
+    assert_equal [2], result2[0..3]
     assert_equal 3, result[0].customer_id
   end
 

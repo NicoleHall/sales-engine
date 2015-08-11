@@ -14,6 +14,10 @@ class Invoices
     @invoice_repository = invoice_repository
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def merchant
     invoice_repository.sales_engine.find_merchant_for_an_invoice(merchant_id)
   end

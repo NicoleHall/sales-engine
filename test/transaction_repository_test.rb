@@ -34,28 +34,28 @@ class TransactionRepositoryTest < SeTest
   def test_it_can_find_matching_transaction_by_id
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
 
-    result = tr.find_transaction_by_id(5)
+    result = tr.find_by_id(5)
     assert_equal 5, result.id
   end
 
   def test_it_can_find_by_invoice_id
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_transaction_by_invoice_id(1)
+    result = tr.find_by_invoice_id(1)
 
     assert_equal 1, result.invoice_id
   end
 
   def test_it_can_find_transaction_by_credit_card_number
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_transaction_by_credit_card_number(4654405418249632)
+    result = tr.find_by_credit_card_number(4654405418249632)
 
     assert_equal 4654405418249632, result.credit_card_number
   end
 
   def test_it_can_find_by_result
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_transaction_by_result("success")
-    result2 = tr.find_transaction_by_result("failed")
+    result = tr.find_by_result("success")
+    result2 = tr.find_by_result("failed")
 
     assert_equal "success", result.result
     assert_equal "failed", result2.result
@@ -63,7 +63,7 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_by_date_created_at
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_transaction_by_created_at("2012-03-27 14:54:09 UTC")
+    result = tr.find_by_created_at("2012-03-27 14:54:09 UTC")
 
     assert_equal 1, result.id
     assert_equal "2012-03-27 14:54:09 UTC", result.created_at
@@ -71,7 +71,7 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_by_date_updated_at
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_transaction_by_updated_at("2012-03-27 14:54:09 UTC")
+    result = tr.find_by_updated_at("2012-03-27 14:54:09 UTC")
 
     assert_equal "2012-03-27 14:54:09 UTC", result.updated_at
     assert_equal 1, result.id
@@ -79,28 +79,28 @@ class TransactionRepositoryTest < SeTest
 
   def test_it_can_find_all_transactions_by_id
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_all_transactions_by_id(5)
+    result = tr.find_all_by_id(5)
 
     assert_equal 5, result[0].id
   end
 
   def test_it_can_find_all_transactions_by_invoice_id
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_all_transactions_by_invoice_id(2)
+    result = tr.find_all_by_invoice_id(2)
 
     assert_equal 1, result.count
   end
 
   def test_it_can_find_all_transactions_by_credit_card_number
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_all_transactions_by_credit_card_number(4654405418249632)
+    result = tr.find_all_by_credit_card_number(4654405418249632)
 
     assert_equal 1, result.count
   end
 
   def test_it_can_find_all_transactions_by_result
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
-    result = tr.find_all_transactions_by_result("failed")
+    result = tr.find_all_by_result("failed")
 
     assert_equal 1, result.count
   end
@@ -108,14 +108,14 @@ class TransactionRepositoryTest < SeTest
   def test_it_can_find_all_transactions_by_created_at
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
 
-    result = tr.find_all_transactions_by_created_at("2012-03-27 14:54:10 UTC")
+    result = tr.find_all_by_created_at("2012-03-27 14:54:10 UTC")
     assert_equal 9, result.count
   end
 
   def test_it_can_find_all_transactions_by_updated_at
     tr = TransactionRepository.new(fixtures_dir, sales_engine)
 
-    result = tr.find_all_transactions_by_updated_at("2012-03-27 14:54:09 UTC")
+    result = tr.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
     assert_equal 2, result.count
   end
 

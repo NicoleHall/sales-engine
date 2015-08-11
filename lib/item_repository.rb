@@ -9,6 +9,10 @@ class ItemRepository
     create_items
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def create_items
     @items = ItemLoader.new(dir, self).load_items
   end

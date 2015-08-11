@@ -53,11 +53,11 @@ class InvoiceTest < SeTest
                     end
     assert_equal [1832, 3, 2, 1], result3
     result4 = invoice_repository.invoices[1].items
-    assert_equal 2, result4[0]
+    # binding.pry
+
+    assert_equal 1832, result4[0].id
     result5 = result4.map do |item|
-                    # if item != nil
                       item.name
-                      # end
                     end
     assert_equal ["Item Provident At", "Item Ea Voluptatum", "Item Autem Minima", "Item Qui Esse"], result5[0..3]
   end

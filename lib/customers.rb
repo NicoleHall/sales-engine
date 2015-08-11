@@ -12,6 +12,10 @@ class Customer
 
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def invoices
     customer_repository.sales_engine.find_invoices_by_customer_id(id)
   end

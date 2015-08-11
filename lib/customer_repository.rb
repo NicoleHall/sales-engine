@@ -10,6 +10,10 @@ class CustomerRepository
     create_customers
   end
 
+  def inspect
+    "#<#{self.class} #{self.id}>"
+  end
+
   def create_customers
     @customers = CustomerLoader.new(dir, self).load_customers
   end

@@ -45,16 +45,16 @@ class InvoiceRepositoryTest < SeTest
 
   def test_it_can_find_by_merchant_id
     invoice_repository = InvoiceRepository.new(fixtures_dir, sales_engine)
-    result = invoice_repository.find_by_merchant_id(44)
+    result = invoice_repository.find_by_merchant_id(1)
 
-    assert_equal 7, result.id
+    assert_equal 1, result.id
   end
 
   def test_it_can_find_by_status
     invoice_repository = InvoiceRepository.new(fixtures_dir, sales_engine)
     result = invoice_repository.find_by_status("shipped")
 
-    assert_equal 26, result.merchant_id
+    assert_equal 1, result.merchant_id
   end
 
   def test_it_can_find_by_date_created_at
@@ -68,7 +68,7 @@ class InvoiceRepositoryTest < SeTest
     invoice_repository = InvoiceRepository.new(fixtures_dir, sales_engine)
     result = invoice_repository.find_by_updated_at("2012-03-12 05:54:09 UTC")
 
-    assert_equal 75, result.merchant_id
+    assert_equal 1, result.merchant_id
     assert_equal 2, result.id
   end
 
@@ -90,8 +90,8 @@ class InvoiceRepositoryTest < SeTest
   def test_it_can_find_all_invoices_by_merchant_id
     invoice_repository = InvoiceRepository.new(fixtures_dir, sales_engine)
 
-    result = invoice_repository.find_all_by_merchant_id(26)
-    assert_equal 1, result.count
+    result = invoice_repository.find_all_by_merchant_id(1)
+    assert_equal 8, result.count
   end
 
   def test_it_can_find_all_invoices_by_status
@@ -118,8 +118,8 @@ class InvoiceRepositoryTest < SeTest
   def test_it_can_find_invoices_assocaite_to_a_merchant
       invoice_repo = InvoiceRepository.new(fixtures_dir, sales_engine)
 
-      result = invoice_repo.find_all_by_merchant_id(38)
-      assert_equal 8, result[0].id
+      result = invoice_repo.find_all_by_merchant_id(1)
+      assert_equal 1, result[0].id
   end
 
 end

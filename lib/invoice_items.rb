@@ -7,7 +7,7 @@ class InvoiceItems
     @item_id = item_id.to_i
     @invoice_id = invoice_id.to_i
     @quantity = quantity.to_i
-    @unit_price = BigDecimal.new(unit_price)
+    @unit_price = unit_price.to_i
     @created_at = created_at# Date.parse(updated_at)
     @updated_at = updated_at# Date.parse(updated_at)
     @invoice_item_repository = invoice_item_repository

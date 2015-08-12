@@ -76,4 +76,4 @@ class CustomerRepository
     find_all_by(:updated_at, updated_at)
   end
 
-  end
+end

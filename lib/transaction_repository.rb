@@ -41,7 +41,8 @@ class TransactionRepository
   end
 
   def find_by_credit_card_number(credit_card_number)
-    find_by(:credit_card_number, credit_card_number)
+
+    find_by(:credit_card_number, credit_card_number.to_i)
   end
 
   def find_by_result(result)

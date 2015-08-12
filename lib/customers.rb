@@ -20,4 +20,12 @@ class Customer
     customer_repository.sales_engine.find_invoices_by_customer_id(id)
   end
 
+  def transactions
+    invoices.map do |invoice|
+      x = invoice.id
+      invoice.invoice_repository.sales_engine.find_transactions_for_an_invoice(x)
+    end.flatten
+  end
+
 end
+# invoice.invoice_repository.sales_engine.find_transactions_for_an_invoice(1)

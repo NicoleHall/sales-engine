@@ -33,6 +33,16 @@ class InvoiceTest < SeTest
     assert_equal 4654405418249632, result[0].credit_card_number
   end
 
+  def test_it_can_return_all_transactions_for_an_invoice
+    result = invoice_repository.invoices[0].transactions
+    result2 = result.map do |item|
+                      item.id
+                      end
+    assert_equal [1], result2[0..3]
+    assert_equal 4654405418249632, result[0].credit_card_number
+  end
+
+
   def test_it_can_retun_a_collection_of_invoice_items_by_invoice_id
     result = invoice_repository.invoices[1].invoice_items
     result2 = result.map do |invoice_item|
@@ -61,8 +71,6 @@ class InvoiceTest < SeTest
                     end
     assert_equal ["Item Provident At", "Item Ea Voluptatum", "Item Autem Minima", "Item Qui Esse"], result5[0..3]
   end
-
-
 
 end
 # 2,Item Autem Minima,Cumque consequuntur ad. Fuga tenetur illo molestias enim aut iste. Provident quo hic aut. Aut quidem voluptates dolores. Dolorem quae ab alias tempora.,67076,1,2012-03-27 14:53:59 UTC,2012-03-27 14:53:59 UTC

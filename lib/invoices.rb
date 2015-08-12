@@ -39,7 +39,12 @@ class Invoices
     x = invoice_item.item_id
     invoice_item.invoice_item_repository.sales_engine.find_item_for_invoice_item_by_item_id(x)
     end
-  #   invoice_repository.sales_engine.find_items_by_way_of_invoice_items(id)
+  end
+
+  def paid?
+    transactions.any? do |transaction|
+      transaction.result == "success"
+    end
   end
 
 end

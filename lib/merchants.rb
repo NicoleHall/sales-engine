@@ -1,3 +1,4 @@
+require 'bigdecimal'
 class Merchants
   attr_reader :id, :name, :created_at, :updated_at, :repository
 
@@ -23,8 +24,16 @@ class Merchants
 
   def invoices_for_successful_transactions
     invoices.select do |invoice|
-       invoice.paid? == true
+       invoice.paid?
      end
+  end
+
+  def successful_invoice_items_by_date(date = nil)
+    invoices_for_successful_transactions.map do |invoice|
+      if invoice.created_at == date
+        return invoice.invoice_items
+      end
+    end
   end
 
   def paid_invoice_items
@@ -33,10 +42,31 @@ class Merchants
     end.flatten
   end
 
-  def revenue
-    paid_invoice_items.map do |invoice_item|
+  def total_revenue
+    x = paid_invoice_items.map do |invoice_item|
       invoice_item.quantity * invoice_item.unit_price
     end.reduce(:+)
+    BigDecimal.new(x) / 100
+  end
+
+  def revenue_by_date(date = nil)
+    x = successful_invoice_items_by_date(date).map do |invoice_item|
+      # binding.pry
+      invoice_item.quantity * invoice_item.unit_price
+    end.reduce(:+)
+    BigDecimal.new(x) / 100
+  end
+
+  # def revenue_by_date(date)
+  #     invoices.select do
+  # end
+##can I clean this up a little?  pull out the data and run through bigD in 2 methods?
+  def revenue(date = nil)
+    if date == nil
+      total_revenue
+    else
+      revenue_by_date(date)
+    end
   end
 
 end

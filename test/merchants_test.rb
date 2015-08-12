@@ -45,7 +45,21 @@ class MerchantsTest < SeTest
   def test_revenue_for_a_merchant
     merchant = merchant_repository.merchants[0]
 
-    assert_equal 24813.25, BigDecimal.new(merchant.revenue) / 100
+    assert_equal 24813.25, merchant.revenue
+  end
+
+  def test_get_successful_merchant_invoice_item_for_a_specific_date
+    merchant = merchant_repository.merchants[0]
+    invoice_items = merchant.successful_invoice_items_by_date("2012-03-25 09:54:09 UTC")
+
+    assert_equal 8, invoice_items.count
+  end
+
+  def test_revenue_for_a_merchant_by_invoice_date
+    merchant = merchant_repository.merchants[0]
+    result = merchant.revenue_by_date("2012-03-25 09:54:09 UTC")
+# binding.pry
+    assert_equal 21067.77, result
   end
 
 end

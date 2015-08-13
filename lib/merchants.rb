@@ -22,10 +22,24 @@ class Merchants
     repository.sales_engine.find_invoices_by_merchant_id(id)
   end
 
+  def transactions
+    invoices.flat_map do |invoice|
+      invoice.transactions
+    end
+  end
+
+  def successful_transactions
+    transactions.select do |transaction|
+      transaction.successful? == true
+    end
+  end
+
+# take these back to invoices and create a method for successfull invoices then you cn subtract the 2 arrays
+
   def invoices_for_successful_transactions
-    invoices.select do |invoice|
-       invoice.paid?
-     end
+    successful_transactions.map do |transaction|
+      transaction.invoice
+    end
   end
 
   def successful_invoice_items_by_date(date = nil)
@@ -37,9 +51,9 @@ class Merchants
   end
 
   def paid_invoice_items
-    invoices_for_successful_transactions.map do |invoice|
+    invoices_for_successful_transactions.flat_map do |invoice|
       invoice.invoice_items
-    end.flatten
+    end
   end
 
   def total_revenue
@@ -51,15 +65,11 @@ class Merchants
 
   def revenue_by_date(date = nil)
     x = successful_invoice_items_by_date(date).map do |invoice_item|
-      # binding.pry
       invoice_item.quantity * invoice_item.unit_price
     end.reduce(:+)
     BigDecimal.new(x) / 100
   end
 
-  # def revenue_by_date(date)
-  #     invoices.select do
-  # end
 ##can I clean this up a little?  pull out the data and run through bigD in 2 methods?
   def revenue(date = nil)
     if date == nil
@@ -68,6 +78,26 @@ class Merchants
       revenue_by_date(date)
     end
   end
+
+  def favorite_customer_id
+    a = invoices_for_successful_transactions.map do |invoice|
+      invoice.customer_id
+    end
+    a.uniq.max_by{ |id| a.count( id ) }
+  end
+
+  def favorite_customer
+    repository.sales_engine.customer_repository.find_by_id(favorite_customer_id)
+  end
+
+  def invoices_for_unsuccessful_transactions
+    invoices - invoices_for_successful_transactions
+  end
+
+  def customers_with_pending_invoices
+
+  end
+
 
 end
 

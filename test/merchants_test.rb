@@ -27,6 +27,22 @@ class MerchantsTest < SeTest
     assert_equal 3, result[0].customer_id
   end
 
+  def test_we_can_find_transactions_for_all_invoices_for_a_merchant
+    transactions = merchant_repository.merchants[0].transactions
+    result2 = transactions.map do |transaction|
+                        transaction.id
+                      end
+    assert_equal [1 ,2, 3, 4, 5, 6, 7], result2[0..8]
+  end
+
+  def test_we_can_get_just_the_successful_transactions
+    successful_trans = merchant_repository.merchants[0].successful_transactions
+    result2 = successful_trans.map do |transaction|
+                        transaction.id
+                      end
+    assert_equal [1 ,2, 4, 6], result2[0..8]
+  end
+
   def test_we_can_get_just_invoices_with_successful_transaction
     successful_transactions = merchant_repository.merchants[0].invoices_for_successful_transactions
     result2 = successful_transactions.map do |invoice|
@@ -58,8 +74,37 @@ class MerchantsTest < SeTest
   def test_revenue_for_a_merchant_by_invoice_date
     merchant = merchant_repository.merchants[0]
     result = merchant.revenue_by_date("2012-03-25 09:54:09 UTC")
-# binding.pry
     assert_equal 21067.77, result
+  end
+
+
+  def test_we_find_the_customer_id_for_the_most_successful_transactions
+    merchant = merchant_repository.merchants[0]
+    result = merchant.favorite_customer_id
+    assert_equal 1, result
+  end
+
+  def test_we_can_find_the_customer_with_the_most_transactions
+    merchant = merchant_repository.merchants[0]
+    result = merchant.favorite_customer
+
+    assert_equal 1, result.id
+  end
+
+  def test_we_can_find_invoices_for_unsuccessful_transactions
+    unsuccessful_transactions = merchant_repository.merchants[0].invoices_for_unsuccessful_transactions
+    result2 = unsuccessful_transactions.map do |invoice|
+                        invoice.id
+                      end
+    assert_equal [1, 2, 5, 7] ,result2
+  end
+
+  def test_we_can_find_customers_with_pending_transactions
+    skip
+    merchant = merchant_repository.merchants[0]
+    result = merchant.customers_with_pending_invoices
+
+    assert_equal 3, result.size
   end
 
 end

@@ -22,4 +22,8 @@ class Transactions
      repository.sales_engine.find_invoice_for_transactions(invoice_id)
    end
 
+   def successful?
+     result == "success"
+   end
+
 end

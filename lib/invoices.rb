@@ -30,6 +30,12 @@ class Invoices
     invoice_repository.sales_engine.find_transactions_for_an_invoice(id)
   end
 
+  # def successful_transactions
+  #   transactions.select do |transactions|
+  #     transactions.successful?
+  #   end
+  # end
+
   def invoice_items
     invoice_repository.sales_engine.find_invoice_items_for_an_invoice(id)
   end
@@ -38,12 +44,6 @@ class Invoices
   invoice_items.map do |invoice_item|
     x = invoice_item.item_id
     invoice_item.invoice_item_repository.sales_engine.find_item_for_invoice_item_by_item_id(x)
-    end
-  end
-
-  def paid?
-    transactions.any? do |transaction|
-      transaction.result == "success"
     end
   end
 

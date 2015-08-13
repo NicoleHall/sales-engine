@@ -18,4 +18,12 @@ class TransactionTest < SeTest
     assert_equal 1, result.merchant_id
   end
 
+  def test_we_can_test_a_successful_transaction
+    result = transaction_repository.transactions[0].successful?
+    result1 = transaction_repository.transactions[2].successful?
+
+    assert  result
+    refute result1
+  end
+
 end

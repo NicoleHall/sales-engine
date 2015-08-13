@@ -33,7 +33,7 @@ class InvoiceTest < SeTest
     assert_equal 4654405418249632, result[0].credit_card_number
   end
 
-  def test_it_can_return_all_transactions_for_an_invoice
+  def test_it_can_return_all_successful_transactions_for_an_invoice
     result = invoice_repository.invoices[0].transactions
     result2 = result.map do |item|
                       item.id

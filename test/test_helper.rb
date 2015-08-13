@@ -13,7 +13,6 @@ require_relative '../lib/invoice_item_repository.rb'
 require_relative '../lib/customer_repository.rb'
 require_relative '../lib/customer_loader'
 require 'bigdecimal'
-
 require 'pry'
 
 class SeTest < Minitest::Test

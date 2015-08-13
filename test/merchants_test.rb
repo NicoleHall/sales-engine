@@ -59,19 +59,32 @@ class MerchantsTest < SeTest
   end
 
   def test_revenue_for_a_merchant
+    sales_eng = SalesEngine.new(data_dir)
+    merchant_repository = MerchantRepository.new(data_dir, sales_eng)
     merchant = merchant_repository.merchants[0]
 
-    assert_equal 24813.25, merchant.revenue
+    assert_equal 528774.64, merchant.revenue
   end
 
-  def test_get_successful_merchant_invoice_item_for_a_specific_date
+  def test_get_successful_merchant_invoice_for_a_specific_date
     merchant = merchant_repository.merchants[0]
-    invoice_items = merchant.successful_invoice_items_by_date("2012-03-25 09:54:09 UTC")
+    invoice = merchant.successful_invoice_by_date("2012-03-25 09:54:09 UTC")
 
-    assert_equal 8, invoice_items.count
+    assert_equal 1, invoice.id
+  end
+
+  def test_get_paid_invoices_items_by_invoice_date_created_at
+    sales_eng = SalesEngine.new(data_dir)
+    merchant_repository = MerchantRepository.new(data_dir, sales_eng)
+    merchant = merchant_repository.merchants[0]
+    invoice_items = merchant.paid_invoice_items_by_date("2012-03-27 14:54:09 UTC")
+
+    assert_equal 4, invoice_items.count
   end
 
   def test_revenue_for_a_merchant_by_invoice_date
+    sales_eng = SalesEngine.new(data_dir)
+    merchant_repository = MerchantRepository.new(data_dir, sales_eng)
     merchant = merchant_repository.merchants[0]
     result = merchant.revenue_by_date("2012-03-25 09:54:09 UTC")
     assert_equal 21067.77, result
@@ -105,6 +118,12 @@ class MerchantsTest < SeTest
     result = merchant.customers_with_pending_invoices
 
     assert_equal 3, result.size
+  end
+
+  def test_we_can_calculate_items_sold_for_a_merchant
+    result = merchant_repository.merchants[0].merchant_items_sold
+
+    assert_equal 67, result
   end
 
 end

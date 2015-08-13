@@ -9,8 +9,8 @@ class Invoices
     @customer_id        = customer_id.to_i
     @merchant_id        = merchant_id.to_i
     @status             = status
-    @created_at         = created_at
-    @updated_at         = updated_at
+    @created_at         = (created_at)
+    @updated_at         = (updated_at)
     @invoice_repository = invoice_repository
   end
 

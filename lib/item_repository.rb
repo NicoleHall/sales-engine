@@ -63,7 +63,7 @@ class ItemRepository
     items.select {|item| item.send(attribute) == search_criteria }
   end
 
-  def find_all_by_id(id) ## why does this exist?
+  def find_all_by_id(id)
     find_all_by(:id, id)
   end
 

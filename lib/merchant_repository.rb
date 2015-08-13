@@ -68,4 +68,22 @@ class MerchantRepository
     find_all_by(:updated_at, updated_at)
   end
 
+  def most_revenue(num)
+    merchants.sort_by do |merchant|
+      merchant.revenue if merchant.revenue
+    end.reverse[0...num]
+  end
+
+  def most_items(x)
+    merchants.sort_by do |merchant|
+      merchant.merchant_items_sold
+    end.reverse[0...x]
+  end
+
+  def revenue(date)
+    merchants.map do |merchant|
+      merchant.revenue(date)
+    end.reduce(:+)
+  end
+
 end

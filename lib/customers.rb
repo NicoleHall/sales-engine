@@ -2,7 +2,8 @@ class Customer
   attr_reader :id, :first_name, :last_name, :created_at, :updated_at,
               :customer_repository
 
-  def initialize(id, first_name, last_name, created_at, updated_at, customer_repository)
+  def initialize(id, first_name, last_name, created_at,
+                 updated_at, customer_repository)
     @id = id.to_i
     @first_name = first_name
     @last_name  = last_name

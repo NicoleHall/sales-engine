@@ -17,7 +17,9 @@ class InvoiceLoader
 
   def load_invoices
     data.each do |row|
-      @invoices << Invoices.new(row[:id], row[:customer_id], row[:merchant_id], row[:status], row[:created_at], row[:updated_at], invoice_repository)
+      @invoices << Invoices.new(row[:id], row[:customer_id], row[:merchant_id],
+                              row[:status], row[:created_at], row[:updated_at],
+                              invoice_repository)
     end
     @invoices
   end

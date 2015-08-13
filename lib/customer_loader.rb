@@ -17,7 +17,8 @@ class CustomerLoader
 
   def load_customers
     data.each do |row|
-      @customers << Customer.new(row[:id], row[:first_name], row[:last_name], row[:created_at], row[:updated_at], customer_repository)
+      @customers << Customer.new(row[:id], row[:first_name], row[:last_name],
+                    row[:created_at], row[:updated_at], customer_repository)
     end
     @customers
   end

@@ -33,7 +33,7 @@ class InvoiceTest < SeTest
     assert_equal 4654405418249632, result[0].credit_card_number
   end
 
-  def test_it_can_return_all_transactions_for_an_invoice
+  def test_it_can_return_all_successful_transactions_for_an_invoice
     result = invoice_repository.invoices[0].transactions
     result2 = result.map do |item|
                       item.id
@@ -73,4 +73,3 @@ class InvoiceTest < SeTest
   end
 
 end
-# 2,Item Autem Minima,Cumque consequuntur ad. Fuga tenetur illo molestias enim aut iste. Provident quo hic aut. Aut quidem voluptates dolores. Dolorem quae ab alias tempora.,67076,1,2012-03-27 14:53:59 UTC,2012-03-27 14:53:59 UTC

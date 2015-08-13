@@ -5,11 +5,14 @@ require_relative 'customer_repository'
 require_relative 'transaction_repository'
 require_relative 'invoice_item_repository'
 require_relative 'fileio'
+require 'date'
 
 class SalesEngine
 
-  attr_reader :merchant_repository, :item_repository, :invoice_repository,
-              :customer_repository, :transaction_repository, :invoice_item_repository
+  attr_reader :merchant_repository, :item_repository,
+              :invoice_repository, :customer_repository,
+              :transaction_repository, :invoice_item_repository
+
   def initialize(dir="data")
     @invoice_repository      ||= InvoiceRepository.new(dir, self)
     @item_repository         ||= ItemRepository.new(dir, self)
@@ -88,14 +91,8 @@ class SalesEngine
     transaction_repository.find_all_by_invoice_id(id)
   end
 
-
-  # def find_items_by_way_of_invoice_items(id)
-  #   invoice_item_repository.find_all_invoice_items_by_id(id)
-  # end
-
 end
 
 if __FILE__ == $0
   engine = SalesEngine.new
-  binding.pry
 end
